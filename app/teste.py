@@ -1,5 +1,8 @@
 from cliente import Cliente
+from funcionario import Funcionario
 
-
-teste = Cliente("p", 112)
-teste.cadastra_cliente()
+nome = 'Well'
+cpf = '139'
+senha = 123
+teste = Funcionario(nome, cpf, senha)
+teste.cadastra_func()

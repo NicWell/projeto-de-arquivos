@@ -1,4 +1,4 @@
-import time
+#import time
 from cliente import Cliente
 
 def acesso (user, password):
@@ -19,8 +19,9 @@ while True:
     print("\n--- ESCOLHA UMA DAS OPÇÕES ---\n")
     print("1 - CAIXA \n")
     print("2 - CADASTRO\n")
-    print("3 - CONFERÊNCIA\n")
-    print("4 - SAIR\n")
+    print("3 - DELETAR\n")
+    print("4 - CONFERÊNCIA\n")
+    print("5 - SAIR\n")
     try:
         opcao = int(input("Digite o número ao lado da operação: "))
         match(opcao):
@@ -49,7 +50,7 @@ while True:
                             break
                         elif(op == 1):
                             nome = str(input("Digite o nome do cliente a ser cadastrado: "))
-                            cpf = str(input("Digite o cfp do cliente (apenas os numeros): "))
+                            cpf = str(input("Digite o cpf do cliente (apenas os numeros): "))
                             cli = Cliente(nome, cpf)
                             cli.cadastra_cliente()
                         else:
@@ -57,10 +58,32 @@ while True:
                 else:
                     print("\nUSUARIO OU SENHA INCORRETO!!")
             case 3:
-                while True:
-                    print("Teste 3")
-                    break
-            case 4:
+                print("\nDigite seu usuário administrador !!\n")
+                user = str(input(": "))
+                print("Digite sua senha: ")
+                passwd = str(input(": "))
+                if(acesso(user, passwd)):
+                    while True:
+                        print("#"*50)
+                        print("SELECIONE A OPÇÃO DE DELECAO!")
+                        print("\n--- ESCOLHA UMA DAS OPÇÕES ---\n")
+                        print("1 - CLIENTE\n")
+                        print("2 - FUNCIONÁRIO\n")
+                        print("3 - PRODUTO\n")
+                        print("4 - SAIR\n")
+                        op = int(input("Digite o número ao lado da operação: "))
+                        if(op == 4):
+                            break
+                        elif(op == 1):
+                            cpf = str(input("Digite o cpf do cliente (apenas os numeros): "))
+                            nome = ' '
+                            cldel = Cliente(nome, cpf)
+                            cldel.deleta_cliente(cpf)
+                        else:
+                            print("Invalido!!")
+                else:
+                    print("\nUSUARIO OU SENHA INCORRETO!!")
+            case 5:
                 break
     except:
         print("\n>>> DIGITE O NÚMERO AO LADO DA OPÇÃO!!! <<<")
