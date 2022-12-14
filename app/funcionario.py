@@ -36,3 +36,23 @@ class Funcionario(Pessoa):
                 add.write(str(cpf)+':')
                 add.write(str(nome)+"\n")
         print("Funcionario Cadastrado!!")
+    def deleta_func(self,cpf):
+        usrAt = []
+        with open('base/funcionario.txt', 'r') as usRead:
+            for line in usRead:
+                usrAt.append(str(line.strip()))
+        #print(usrAt)
+        pos = None
+        print(usrAt)
+        for x in range(0, len(usrAt)):
+            if(re.search(str(cpf), usrAt[x])):
+                pos = x
+        if (pos != None):
+            del(usrAt[pos])
+            del(usrAt[pos])
+            print("FUNCIONÁRIO DELETADO!!")
+        else:
+            print("Não foi possível Deletar o registro, ele não se encontra no sistema!")
+        with open('base/funcionario.txt', 'w', encoding= 'utf-8') as update:
+            for x in range(0, len(usrAt)):
+                update.write(str(usrAt[x])+'\n')
