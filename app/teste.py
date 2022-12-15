@@ -1,8 +1,6 @@
 from cliente import Cliente
 from funcionario import Funcionario
+from produto import Produto
 
-nome = 'Pedro'
-cpf = 13914163410
-senha = 223
-teste = Funcionario(nome, cpf, senha)
-teste.atualiza_func(nome, cpf, senha)
+prod = Produto('Bolo',"4 un", "RS20")
+prod.lista_Produto()
