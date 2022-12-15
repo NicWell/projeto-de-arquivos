@@ -1,8 +1,8 @@
 from cliente import Cliente
 from funcionario import Funcionario
 
-nome = 'Robson'
-cpf = 132
-senha = 21
+nome = 'Pedro'
+cpf = 13914163410
+senha = 223
 teste = Funcionario(nome, cpf, senha)
-teste.deleta_func(cpf)
+teste.atualiza_func(nome, cpf, senha)

@@ -1,5 +1,6 @@
 from pessoa import Pessoa
 import re
+import time
 class Cliente(Pessoa):
     def __init__(self, nome, cpf):
         super().__init__(nome, cpf)
@@ -60,14 +61,17 @@ class Cliente(Pessoa):
                 listClientes.append(str(line.strip()))
         for x in range(0, len(listClientes)):
             listClientes[x] = str(listClientes[x]).split(':')
-        print(listClientes)
         for x in range(0, len(listClientes)):
             for y in listClientes[x]:
                 listClientes[x] = y
+        time.sleep(1)
         print("\nLISTA DE CLIENTES:\n")
+        x = 1
         for nomes in listClientes:
-            print(nomes)
+            print(str(x)+" - "+str(nomes))
             print('--------------------------------')
+            x+=1
+            time.sleep(0.5)
     def atualiza_Clientes(self, cpf, nome):
         listClientes = []
         with open('base/cliente.txt', 'r') as readCliente:

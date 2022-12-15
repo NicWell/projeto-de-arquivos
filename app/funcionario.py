@@ -1,5 +1,6 @@
 from pessoa import Pessoa
 import re
+import time
 
 class Funcionario(Pessoa):
     def __init__(self, nome, cpf, senha):
@@ -43,7 +44,6 @@ class Funcionario(Pessoa):
                 usrAt.append(str(line.strip()))
         #print(usrAt)
         pos = None
-        print(usrAt)
         for x in range(0, len(usrAt)):
             if(re.search(str(cpf), usrAt[x])):
                 pos = x
@@ -56,3 +56,46 @@ class Funcionario(Pessoa):
         with open('base/funcionario.txt', 'w', encoding= 'utf-8') as update:
             for x in range(0, len(usrAt)):
                 update.write(str(usrAt[x])+'\n')
+    def lista_func(self):
+        listFunc = []
+        with open('base/funcionario.txt', 'r') as read:
+            for line in read:
+                listFunc.append(str(line.strip()))
+        for x in range(0, len(listFunc)):
+            listFunc[x] = str(listFunc[x]).split(':')
+        for x in range(0, len(listFunc)):
+            for y in listFunc[x]:
+                listFunc[x] = y
+        listNomes = []
+        for x in range(0, len(listFunc)):
+            if (x%2 == 0):
+                listNomes.append(listFunc[x]) 
+        time.sleep(1)
+        print("\nLISTA DE FUNCIONARIOS:\n")
+        y = 1
+        for x in range(0, len(listNomes)):
+            time.sleep(0.5)
+            print(str(y)+" - "+listNomes[x])
+            print('--------------------------------')
+            y+=1
+    def atualiza_func(self, nome, cpf, senha):
+        listaFunc = []
+        with open('base/funcionario.txt', 'r') as readF:
+            for line in readF:
+                listaFunc.append(str(line.strip()))
+        pos = None
+        for x in range(0, len(listaFunc)):
+            if(re.search(str(cpf), listaFunc[x]) or re.search(nome, listaFunc[x])):
+                pos = x
+        if (pos != None):
+            listaFunc[pos] = str(cpf)+':'+nome
+            pos += 1
+            listaFunc[pos] = 'senha:'+str(senha)
+            print('--------------------------------')
+            print("Funcionário atualizado!!")
+            print('--------------------------------')
+            with open('base/funcionario.txt', 'w', encoding= 'utf-8') as update:
+                for x in range(0, len(listaFunc)):
+                    update.write(str(listaFunc[x])+'\n')
+        else:
+            print("Não foi possível Atualizar o registro, ele não se encontra no sistema!")
